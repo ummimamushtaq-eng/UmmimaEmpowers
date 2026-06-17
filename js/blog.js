@@ -11,26 +11,20 @@ document.addEventListener('DOMContentLoaded', function () {
 
     const homeBlogPosts = document.getElementById('homeBlogPosts');
     const blogPosts = document.getElementById('blogPosts');
-    const categoryList = document.getElementById('categoryList');
-    const recentPostsList = document.getElementById('recentPostsList');
-    const searchInput = document.getElementById('blogSearchInput');
-    const searchButton = document.getElementById('blogSearchButton');
-    const clearFilterButton = document.getElementById('clearBlogFilter');
     const blogModal = document.getElementById('blogModal');
     const blogModalBody = document.getElementById('blogModalBody');
 
     async function loadPosts() {
-        const response = await fetch(BLOG_DATA_URL, { cache: 'no-store' });
+        const response = await fetch(BLOG_DATA_URL);
         const posts = await response.json();
 
-        allPosts = posts
-            .filter(post => post && post.title && post.slug)
-            .sort((a, b) => new Date(b.date) - new Date(a.date));
+        allPosts = posts.sort((a, b) => new Date(b.date) - new Date(a.date));
 
         renderHomePosts();
         renderBlogPage();
     }
 
+    // ✅ FIXED HOME PAGE (restores your layout)
     function renderHomePosts() {
         if (!homeBlogPosts) return;
 
@@ -38,30 +32,47 @@ document.addEventListener('DOMContentLoaded', function () {
 
         homeBlogPosts.innerHTML = latestPosts.map(post => `
             <article class="article-card">
-                <img src="${post.image || fallbackImage}" />
-                <h3>${post.title}</h3>
-                <p>${post.excerpt}</p>
-                <a href="blog.html#post-${post.slug}">Read More</a>
+
+                <div class="article-image">
+                    <img src="${post.image || fallbackImage}" alt="${post.title}">
+                </div>
+
+                <div class="article-content">
+                    <h3>${post.title}</h3>
+                    <p>${post.excerpt}</p>
+                    <a href="blog.html#post-${post.slug}">Read More</a>
+                </div>
+
             </article>
         `).join('');
     }
 
+    // ✅ BLOG PAGE WITH PAGINATION
     function renderBlogPage() {
         if (!blogPosts) return;
 
-        renderCategories();
-        renderRecentPosts();
-
-        let filteredPosts = getFilteredPosts();
+        let filtered = allPosts;
 
         const start = (currentPage - 1) * postsPerPage;
         const end = start + postsPerPage;
 
-        const paginatedPosts = filteredPosts.slice(start, end);
+        const pagePosts = filtered.slice(start, end);
 
-        blogPosts.innerHTML = paginatedPosts.map(post => createBlogCard(post)).join('');
+        blogPosts.innerHTML = pagePosts.map(post => `
+            <article class="blog-post">
 
-        renderPagination(filteredPosts.length);
+                <img src="${post.image || fallbackImage}" alt="${post.title}">
+
+                <h2>${post.title}</h2>
+
+                <p>${post.excerpt}</p>
+
+                <a href="#" data-open-post="${post.slug}">Read Full Article</a>
+
+            </article>
+        `).join('');
+
+        renderPagination(filtered.length);
 
         document.querySelectorAll('[data-open-post]').forEach(btn => {
             btn.addEventListener('click', function (e) {
@@ -71,18 +82,8 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
-    function createBlogCard(post) {
-        return `
-            <article class="blog-post">
-                <img src="${post.image || fallbackImage}" />
-                <h2>${post.title}</h2>
-                <p>${post.excerpt}</p>
-                <a href="#" data-open-post="${post.slug}">Read More</a>
-            </article>
-        `;
-    }
-
-    function renderPagination(totalPosts) {
+    // ✅ PAGINATION FIXED
+    function renderPagination(total) {
 
         let pagination = document.getElementById('pagination');
 
@@ -92,7 +93,7 @@ document.addEventListener('DOMContentLoaded', function () {
             blogPosts.parentNode.appendChild(pagination);
         }
 
-        const totalPages = Math.ceil(totalPosts / postsPerPage);
+        const totalPages = Math.ceil(total / postsPerPage);
 
         pagination.innerHTML = `
             <button onclick="prevPage()" ${currentPage === 1 ? 'disabled' : ''}>Prev</button>
@@ -115,20 +116,24 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     };
 
-    function getFilteredPosts() {
-        return allPosts.filter(post => {
-            return (activeCategory === 'All' || post.category === activeCategory);
-        });
-    }
-
-    function renderCategories() {}
-    function renderRecentPosts() {}
-
+    // ✅ MODAL FIX (THIS WAS MISSING)
     function openPostModal(slug) {
+
         const post = allPosts.find(p => p.slug === slug);
         if (!post) return;
 
-        alert(post.title + "\n\n" + post.content.replace(/<[^>]*>/g, ''));
+        if (!blogModal || !blogModalBody) {
+            alert(post.title + "\n\n" + post.content.replace(/<[^>]*>/g, ''));
+            return;
+        }
+
+        blogModalBody.innerHTML = `
+            <h1>${post.title}</h1>
+            <img src="${post.image || fallbackImage}" style="width:100%">
+            <div>${post.content}</div>
+        `;
+
+        blogModal.classList.add('active');
     }
 
     loadPosts();
