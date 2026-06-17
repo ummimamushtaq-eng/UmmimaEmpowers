@@ -10,6 +10,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const blogModal = document.getElementById('blogModal');
     const blogModalBody = document.getElementById('blogModalBody');
 
+    /* ================= LOAD POSTS ================= */
     async function loadPosts() {
         const res = await fetch(BLOG_DATA_URL);
         allPosts = await res.json();
@@ -18,7 +19,7 @@ document.addEventListener('DOMContentLoaded', function () {
         renderBlogPage();
     }
 
-    /* ===== HOME PAGE ===== */
+    /* ================= HOME PAGE ================= */
     function renderHomePosts() {
         if (!homeBlogPosts) return;
 
@@ -28,32 +29,37 @@ document.addEventListener('DOMContentLoaded', function () {
             <article class="article-card">
 
                 <div class="article-image">
-                    <img src="${post.image || fallbackImage}">
+                    <img src="${post.image || fallbackImage}" alt="${post.title}">
                 </div>
 
                 <div class="article-content">
                     <h3>${post.title}</h3>
                     <p>${post.excerpt}</p>
-                    <a href="blog.html#${post.slug}">Read More</a>
+
+                    <!-- FIXED LINK (NO SCROLL ISSUE) -->
+                    <a href="#" class="read-more" data-open="${post.slug}">
+                        Read More
+                    </a>
                 </div>
 
             </article>
         `).join('');
     }
 
-    /* ===== BLOG PAGE ===== */
+    /* ================= BLOG PAGE ================= */
     function renderBlogPage() {
         if (!blogPosts) return;
 
         blogPosts.innerHTML = allPosts.map(post => `
             <article class="blog-post">
 
-                <img src="${post.image || fallbackImage}">
+                <img src="${post.image || fallbackImage}" alt="${post.title}">
 
                 <div class="post-content">
                     <h2>${post.title}</h2>
                     <p class="post-excerpt">${post.excerpt}</p>
 
+                    <!-- FIXED BUTTON -->
                     <a href="#" data-open="${post.slug}">
                         Read Full Article
                     </a>
@@ -61,17 +67,11 @@ document.addEventListener('DOMContentLoaded', function () {
 
             </article>
         `).join('');
-
-        document.querySelectorAll('[data-open]').forEach(btn => {
-            btn.addEventListener('click', function (e) {
-                e.preventDefault();
-                openModal(this.dataset.open);
-            });
-        });
     }
 
-    /* ===== MODAL FIX ===== */
+    /* ================= MODAL OPEN ================= */
     function openModal(slug) {
+
         const post = allPosts.find(p => p.slug === slug);
         if (!post) return;
 
@@ -82,16 +82,35 @@ document.addEventListener('DOMContentLoaded', function () {
         `;
 
         blogModal.classList.add('active');
-    }
 
-    /* ===== CLOSE MODAL ===== */
-    if (blogModal) {
-        blogModal.addEventListener('click', function (e) {
-            if (e.target.hasAttribute('data-close-modal')) {
-                blogModal.classList.remove('active');
-            }
+        // ✅ FIX: stop scroll issues
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth"
         });
     }
+
+    /* ================= MODAL CLOSE ================= */
+    function closeModal() {
+        blogModal.classList.remove('active');
+    }
+
+    /* ================= CLICK HANDLER (IMPORTANT FIX) ================= */
+    document.addEventListener('click', function (e) {
+
+        // OPEN MODAL
+        const openBtn = e.target.closest('[data-open]');
+        if (openBtn) {
+            e.preventDefault(); // ❗ stops jump/scroll issue
+            openModal(openBtn.dataset.open);
+            return;
+        }
+
+        // CLOSE MODAL
+        if (e.target.hasAttribute('data-close-modal')) {
+            closeModal();
+        }
+    });
 
     loadPosts();
 });
