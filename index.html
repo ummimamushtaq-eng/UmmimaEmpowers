@@ -12,10 +12,10 @@
     <!-- Navigation Bar -->
     <nav class="navbar">
         <div class="nav-container">
-            <div class="logo">
+            <a href="index.html" class="logo">
                 <i class="fas fa-heart"></i>
                 <span>Ummima Empowers</span>
-            </div>
+            </a>
             <ul class="nav-menu">
                 <li><a href="#home" class="nav-link active">Home</a></li>
                 <li><a href="blog.html" class="nav-link">Blog</a></li>
@@ -33,11 +33,25 @@
     <!-- Hero Section -->
     <section id="home" class="hero">
         <div class="hero-content">
-            <h1 class="hero-title">Empower Women, Transform Society</h1>
+            <h1 class="hero-title">Empower Women,<br>Transform Society</h1>
             <p class="hero-subtitle">Raising awareness about women's rights and challenging stereotypes</p>
             <div class="hero-buttons">
                 <a href="blog.html" class="btn btn-primary">Read Our Blog</a>
                 <a href="#about" class="btn btn-secondary">Learn More</a>
+            </div>
+            <div class="hero-stats">
+                <div class="hero-stat">
+                    <h4>100+</h4>
+                    <p>Articles Published</p>
+                </div>
+                <div class="hero-stat">
+                    <h4>50K+</h4>
+                    <p>Community Members</p>
+                </div>
+                <div class="hero-stat">
+                    <h4>180+</h4>
+                    <p>Countries Reached</p>
+                </div>
             </div>
         </div>
         <div class="hero-image">
@@ -50,6 +64,8 @@
             <div class="floating-card card-3">
                 <i class="fas fa-star"></i>
             </div>
+            <div class="animated-circle circle-1"></div>
+            <div class="animated-circle circle-2"></div>
             <svg class="wave" viewBox="0 0 1200 120" preserveAspectRatio="none">
                 <path d="M0,50 Q300,0 600,50 T1200,50 L1200,120 L0,120 Z" fill="#fff"></path>
             </svg>
@@ -65,16 +81,17 @@
                     <p class="highlight-text">Our Mission</p>
                     <h3>Empower Women Through Knowledge & Awareness</h3>
                     <p>Ummima Empowers raises awareness about women's rights as granted by religion and challenges societal stereotypes. We uncover hidden truths and discuss gender inequality to empower women to stand strong and independent.</p>
+                    <p>Our platform provides a safe space for women to learn, share experiences, and connect with a supportive community dedicated to advancing women's rights globally.</p>
                     <div class="stats">
-                        <div class="stat-item">
+                        <div class="stat-item animate-stat">
                             <h4>Women's Rights</h4>
                             <p>Awareness & Education</p>
                         </div>
-                        <div class="stat-item">
+                        <div class="stat-item animate-stat">
                             <h4>Community</h4>
                             <p>Supportive & Inclusive</p>
                         </div>
-                        <div class="stat-item">
+                        <div class="stat-item animate-stat">
                             <h4>Impact</h4>
                             <p>Real Change Everywhere</p>
                         </div>
@@ -82,10 +99,47 @@
                 </div>
                 <div class="about-image">
                     <div class="image-wrapper">
-                        <div class="image-placeholder">
+                        <div class="image-placeholder gradient-pink">
                             <i class="fas fa-venus"></i>
                         </div>
                     </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Values Section -->
+    <section class="values-section">
+        <div class="container">
+            <h2 class="section-title">Our Core Values</h2>
+            <div class="values-grid">
+                <div class="value-card">
+                    <div class="value-icon">
+                        <i class="fas fa-lightbulb"></i>
+                    </div>
+                    <h3>Education</h3>
+                    <p>Empowering through knowledge and critical thinking about women's rights and gender equality.</p>
+                </div>
+                <div class="value-card">
+                    <div class="value-icon">
+                        <i class="fas fa-heart"></i>
+                    </div>
+                    <h3>Compassion</h3>
+                    <p>Supporting women with empathy and understanding their unique challenges and experiences.</p>
+                </div>
+                <div class="value-card">
+                    <div class="value-icon">
+                        <i class="fas fa-fist-raised"></i>
+                    </div>
+                    <h3>Empowerment</h3>
+                    <p>Helping women find their voice and stand strong in creating positive social change.</p>
+                </div>
+                <div class="value-card">
+                    <div class="value-icon">
+                        <i class="fas fa-globe"></i>
+                    </div>
+                    <h3>Global Impact</h3>
+                    <p>Creating a worldwide movement for women's rights and gender equality in all societies.</p>
                 </div>
             </div>
         </div>
@@ -98,9 +152,10 @@
             <div class="articles-grid">
                 <article class="article-card">
                     <div class="article-image">
-                        <div class="image-placeholder pink-1">
+                        <div class="image-placeholder pink-gradient-1">
                             <i class="fas fa-book"></i>
                         </div>
+                        <span class="article-badge">Featured</span>
                     </div>
                     <div class="article-content">
                         <span class="article-category">Women's Rights</span>
@@ -112,7 +167,7 @@
 
                 <article class="article-card">
                     <div class="article-image">
-                        <div class="image-placeholder pink-2">
+                        <div class="image-placeholder pink-gradient-2">
                             <i class="fas fa-lightbulb"></i>
                         </div>
                     </div>
@@ -126,7 +181,7 @@
 
                 <article class="article-card">
                     <div class="article-image">
-                        <div class="image-placeholder pink-3">
+                        <div class="image-placeholder pink-gradient-3">
                             <i class="fas fa-heart"></i>
                         </div>
                     </div>
@@ -141,12 +196,152 @@
         </div>
     </section>
 
+    <!-- Statistics Section -->
+    <section class="statistics-section">
+        <div class="container">
+            <h2 class="section-title white-text">Our Impact</h2>
+            <div class="statistics-grid">
+                <div class="stat-box">
+                    <div class="stat-number" data-target="100">0</div>
+                    <p>Articles Published</p>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-number" data-target="50">0</div>
+                    <p>K+ Community Members</p>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-number" data-target="180">0</div>
+                    <p>Countries Reached</p>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-number" data-target="10">0</div>
+                    <p>K+ Lives Impacted</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="testimonials-section">
+        <div class="container">
+            <h2 class="section-title">What Women Say</h2>
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <div class="stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p class="testimonial-text">"Ummima Empowers has been a life-changing platform for me. I learned so much about my rights and feel empowered to make my own decisions."</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">F</div>
+                        <div>
+                            <h4>Fatima Ahmed</h4>
+                            <p>Cairo, Egypt</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="testimonial-card">
+                    <div class="stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p class="testimonial-text">"The blog posts are insightful and help me understand women's rights from a religious perspective. Highly recommended!"</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">A</div>
+                        <div>
+                            <h4>Aisha Khan</h4>
+                            <p>Karachi, Pakistan</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="testimonial-card">
+                    <div class="stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p class="testimonial-text">"This community has given me confidence and strength. I'm now advocating for women's rights in my community!"</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">M</div>
+                        <div>
+                            <h4>Maryam Hassan</h4>
+                            <p>Dubai, UAE</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Call to Action -->
     <section class="cta-section">
         <div class="container">
             <h2>Join Our Movement</h2>
             <p>Be part of a community dedicated to advancing women's rights and empowerment</p>
-            <button class="btn btn-primary btn-large">Subscribe to Our Newsletter</button>
+            <button class="btn btn-primary btn-large" onclick="scrollToContact()">Get In Touch</button>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact-section">
+        <div class="container">
+            <h2 class="section-title">Get In Touch</h2>
+            <div class="contact-content">
+                <div class="contact-form-wrapper">
+                    <form class="contact-form" id="contactForm">
+                        <div class="form-group">
+                            <label for="name">Full Name</label>
+                            <input type="text" id="name" name="name" placeholder="Your name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email Address</label>
+                            <input type="email" id="email" name="email" placeholder="your@email.com" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="subject">Subject</label>
+                            <input type="text" id="subject" name="subject" placeholder="Message subject" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Message</label>
+                            <textarea id="message" name="message" placeholder="Your message here..." rows="5" required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-full">Send Message</button>
+                    </form>
+                    <div id="formMessage" class="form-message"></div>
+                </div>
+                <div class="contact-info">
+                    <div class="info-card">
+                        <i class="fas fa-envelope"></i>
+                        <h3>Email</h3>
+                        <p>hello@ummimaempowers.com</p>
+                    </div>
+                    <div class="info-card">
+                        <i class="fas fa-phone"></i>
+                        <h3>Phone</h3>
+                        <p>+1 (555) 123-4567</p>
+                    </div>
+                    <div class="info-card">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <h3>Location</h3>
+                        <p>Global Community</p>
+                    </div>
+                    <div class="info-card">
+                        <i class="fas fa-clock"></i>
+                        <h3>Hours</h3>
+                        <p>24/7 Support Available</p>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 
