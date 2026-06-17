@@ -5,8 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Blog - Ummima Empowers</title>
 
+    <!-- CSS -->
     <link rel="stylesheet" href="css/styles.css">
     <link rel="stylesheet" href="css/blog.css">
+
+    <!-- Fonts & Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet">
 </head>
@@ -41,21 +44,15 @@
 
     <div class="blog-layout">
 
-        <!-- BLOG POSTS (DYNAMIC) -->
+        <!-- BLOG POSTS (DYNAMIC LOADED FROM JSON) -->
         <main class="blog-posts" id="blogPosts">
-
-            <!-- JS WILL LOAD POSTS HERE -->
-
             <p style="text-align:center;">Loading blogs...</p>
-
         </main>
 
         <!-- SIDEBAR -->
         <aside class="blog-sidebar">
-
             <h3>Categories</h3>
             <p>Loaded from JSON</p>
-
         </aside>
 
     </div>
@@ -67,7 +64,26 @@
     <p>&copy; 2026 Ummima Empowers</p>
 </footer>
 
-<!-- IMPORTANT JS FILE -->
+<!-- 🔥 BLOG MODAL (THIS WAS MISSING - MAIN FIX) -->
+<div id="blogModal" class="blog-modal" aria-hidden="true">
+
+    <div class="blog-modal-overlay" data-close-modal></div>
+
+    <div class="blog-modal-content">
+
+        <button class="blog-modal-close" data-close-modal>
+            &times;
+        </button>
+
+        <div id="blogModalBody">
+            <!-- Dynamic blog content loads here -->
+        </div>
+
+    </div>
+
+</div>
+
+<!-- JS -->
 <script src="js/blog.js"></script>
 
 </body>
